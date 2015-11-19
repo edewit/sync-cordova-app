@@ -1,0 +1,25 @@
+{
+  "name": "fh-js-sdk",
+  "version": "2.1.0",
+  "homepage": "https://github.com/feedhenry/fh-js-sdk",
+  "authors": [
+    "npm@feedhenry.com"
+  ],
+  "description": "FeedHenry JS SDK",
+  "main": "dist/feedhenry-forms.js",
+  "keywords": [
+    "feedhenry",
+    "mobile",
+    "html5",
+    "mbaas",
+    "sdk"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

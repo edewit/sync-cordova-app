@@ -1,0 +1,12 @@
+{
+  "name": "HelloIonic",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.1.1",
+    "ng-feedhenry": "~0.2.53"
+  },
+  "dependencies": {
+    "fh-js-sdk": "~3.25.0+155",
+    "momentjs": "~2.10.6"
+  }
+}

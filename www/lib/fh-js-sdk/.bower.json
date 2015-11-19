@@ -1,0 +1,35 @@
+{
+  "name": "fh-js-sdk",
+  "version": "3.25.0+155",
+  "homepage": "https://github.com/feedhenry/fh-js-sdk",
+  "authors": [
+    "npm@feedhenry.com"
+  ],
+  "description": "FeedHenry JS SDK",
+  "main": "dist/feedhenry-forms.js",
+  "keywords": [
+    "feedhenry",
+    "mobile",
+    "html5",
+    "mbaas",
+    "sdk"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "3.25.0+155",
+  "_resolution": {
+    "type": "version",
+    "tag": "3.25.0+155",
+    "commit": "0551dfc8375540b843372d9de551b2fd37455eae"
+  },
+  "_source": "git://github.com/feedhenry/fh-js-sdk.git",
+  "_target": "~3.25.0+155",
+  "_originalSource": "fh-js-sdk",
+  "_direct": true
+}

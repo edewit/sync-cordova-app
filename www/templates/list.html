@@ -1,0 +1,17 @@
+<ion-view title="Sync Demo">
+    <ion-nav-buttons side="left">
+        <button class="button icon ion-android-delete" ng-click="deleteAll()"></button>
+    </ion-nav-buttons>
+    <ion-content padding="'true'" class="has-header">
+        <ion-list ng-repeat="item in list" can-swipe="true">
+            <ion-item menu-close="" href="#/tab/detail/{{item.id}}">
+                {{item.name}}
+                <p>{{item.id}}</p>
+                <span class="item-note">{{item.moment}}</span>
+                <ion-option-button class="button-assertive" ng-click="delete(item)">
+                       Delete
+                </ion-option-button>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,31 @@
+{
+  "name": "ng-feedhenry",
+  "version": "0.2.53",
+  "description": "AngularJS friendly FeedHenry SDK wrapper.",
+  "homepage": "https://github.com/feedhenry-staff/ngFeedHenry",
+  "main": "./dist/ngFH.js",
+  "authors": [
+    "Evan Shortiss"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "angular-mocks": "1.2.12"
+  },
+  "_release": "0.2.53",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.2.53",
+    "commit": "8086715a6076d7a68fb89d8a06f6cded3c40211c"
+  },
+  "_source": "git://github.com/feedhenry-staff/ngFeedHenry.git",
+  "_target": "~0.2.53",
+  "_originalSource": "ng-feedhenry"
+}
