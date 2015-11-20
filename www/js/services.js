@@ -7,16 +7,31 @@ angular.module('app.services', [])
     for(var i in r) {
       result.push(unwrap(r[i], i));
     }
-    return result;    
+    return result;
   }
-  
+
   function unwrap(value, id) {
       var obj = value.data;
       obj.id = id;
       obj.moment = moment(obj.created).fromNow();
       return obj;
   }
-  
+
+  function promiseWrap(block) {
+      var deferred = $q.defer();
+      var success = function(r) {
+        deferred.resolve(r);
+      };
+      var fail = function(code, msg) {
+        console.log("error msg" + msg);
+        console.log("error code " + code);
+        deferred.reject(msg)
+      };
+
+      block(success, fail);
+      return deferred.promise;
+  }
+
   return {
     init: function () {
       $fh.sync.init();
@@ -32,7 +47,7 @@ angular.module('app.services', [])
         console.log("error target " + error.target);
         deferred.reject(error);
       };
-      
+
       $fh.sync.manage(datasetId);
       $fh.sync.notify(function(notification) {
         if( 'sync_complete' == notification.code ) {
@@ -44,21 +59,15 @@ angular.module('app.services', [])
         else if( 'remote_update_failed' === notification.code ) {
           var errorMsg = notification.message ? notification.message.msg ? notification.message.msg : undefined : undefined;
           fail(errorMsg);
-        }    
+        }
       });
-      
+
       return deferred.promise;
     },
     deleteItem: function(item) {
-      var deferred = $q.defer();      
-      $fh.sync.doDelete(datasetId, item.id, function(r) {
-        deferred.resolve(r);
-      }, function(code, msg) {
-        console.log("error msg" + msg);
-        console.log("error code " + code);
-        deferred.reject(msg)
+      return promiseWrap(function(success, fail) {
+        $fh.sync.doDelete(datasetId, item.id, success, fail);
       });
-      return deferred.promise;
     },
     deleteAll: function() {
       var deferred = $q.defer();
@@ -73,48 +82,27 @@ angular.module('app.services', [])
       $fh.sync.doList(datasetId, function(r) {
         for(var i in r) {
           $fh.sync.doDelete(datasetId, i, success, fail);
-        }        
-      }, fail);      
+        }
+      }, fail);
       return deferred.promise;
     },
     getItem: function(id) {
-      var deferred = $q.defer();      
-      $fh.sync.doRead(datasetId, id, function(r) {
-          deferred.resolve(unwrap(r, id));
-      }, function(code, msg) {
-        console.log("error msg" + msg);
-        console.log("error code " + code);
-        deferred.reject(msg)
+      return promiseWrap(function(success, fail) {
+        $fh.sync.doRead(datasetId, id, function(r) {
+          success(unwrap(r, id));
+        }, fail);
       });
-      return deferred.promise;
     },
     update: function(item) {
-      var deferred = $q.defer();      
-      $fh.sync.doUpdate(datasetId, item.id, item, function(r) {
-          deferred.resolve(r);
-      }, function(code, msg) {
-        console.log("error msg" + msg);
-        console.log("error code " + code);
-        deferred.reject(msg)
+      return promiseWrap(function(success, fail) {
+        $fh.sync.doUpdate(datasetId, item.id, item, success, fail);
       });
-      return deferred.promise;
-    }, 
+    },
     save: function(item) {
-      var deferred = $q.defer();      
-      $fh.sync.doCreate(datasetId, item, function(r) {
-          deferred.resolve(r);
-      }, function(code, msg) {
-        console.log("error msg" + msg);
-        console.log("error code " + code);
-        deferred.reject(msg)
+      return promiseWrap(function(success, fail) {
+        $fh.sync.doCreate(datasetId, item, success, fail);
       });
-      return deferred.promise;
-    } 
+    }
   };
-}])
-
-
-.service('BlankService', [function(){
-
 }]);
 
