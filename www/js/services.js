@@ -7,7 +7,7 @@ angular.module('app.services', [])
     for(var i in r) {
       result.push(unwrap(r[i], i));
     }
-    return result;
+    return result.reverse();
   }
 
   function unwrap(value, id) {
@@ -34,7 +34,10 @@ angular.module('app.services', [])
 
   return {
     init: function () {
-      $fh.sync.init();
+      $fh.sync.init({
+        "do_console_log" : true,
+        "storage_strategy" : "dom"
+      });
       var deferred = $q.defer();
       var success = function(r) {
         var result = unwrapList(r);
