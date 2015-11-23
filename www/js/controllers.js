@@ -1,6 +1,6 @@
 angular.module('app.controllers', [])
 
-.controller('listCtrl', function($rootScope, $scope, sync) {
+.controller('mainCtrl', function($rootScope, $scope, sync) {
 	sync.init();
 	$rootScope.$on('sync', function(event, list) {
 		$scope.list = list;
@@ -28,7 +28,7 @@ angular.module('app.controllers', [])
 
 	$scope.new = function() {
 		$scope.item = {};
-		$location.path('/tab/detail/')
+		$location.path('/tabs/detail/')
 	}
 
 	$scope.save = function(item) {
@@ -38,6 +38,6 @@ angular.module('app.controllers', [])
 			sync.save(item);
 		}
 		$scope.item = {};
-		$state.go('tabsController.main');
+		$state.go('tabs.main');
 	};
 })

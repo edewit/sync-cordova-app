@@ -7,17 +7,17 @@ angular.module('app.routes', [])
   // Set up the various states which the app can be in.
   // Each state's controller can be found in controllers.js
   $stateProvider
-    .state('tabsController.main', {
+    .state('tabs.main', {
       url: '/main',
       views: {
         'main': {
-          templateUrl: 'templates/list.html',
-          controller: 'listCtrl'
+          templateUrl: 'templates/main.html',
+          controller: 'mainCtrl'
         }
       }
     })
 
-    .state('tabsController.edit/new', {
+    .state('tabs.edit/new', {
       url: '/detail/:id',
       views: {
         'detail': {
@@ -27,13 +27,13 @@ angular.module('app.routes', [])
       }
     })
 
-    .state('tabsController', {
-      url: '/tab',
+    .state('tabs', {
+      url: '/tabs',
       abstract:true,
-      templateUrl: 'templates/tabsController.html'
+      templateUrl: 'templates/tabs.html'
     });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/main');
+  $urlRouterProvider.otherwise('/tabs/main');
 
 });
